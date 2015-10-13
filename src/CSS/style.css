@@ -1,0 +1,93 @@
+body {
+    height: 700px;
+    border: 1px green solid;
+}
+
+.gamearea {
+    margin: 2% 0 0 12%;
+    border-radius: 20px;
+    height: 85%;
+    width: 40%;
+    border: 5px darkgray solid;
+    float: left;
+}
+
+.cell {
+    height: 32%;
+    width: 32.2%;
+    border-radius: 20px;
+    margin: 2px;
+    border: 1px lightblue solid;
+    float: left;
+    font-size: 0px;
+    background-color: white;
+}
+
+.settings {
+    border: 5px darkgray solid;
+    border-radius: 20px;
+    margin: 2% 0 0 57%;
+    height: 12%;
+    width: 25%;
+}
+
+.settings .avatar {
+    width: 80px; 
+    height: 80px; 
+    margin-left: 20%;   
+}
+
+.settings .sound {
+    width: 80px; 
+    height: 80px; 
+    margin-left: 20%;   
+}
+
+.menu {
+    border: 5px darkgray solid;
+    border-radius: 20px;
+    margin: 1% 0 0 57%;
+    height: 70%;
+    width: 25%;
+}
+
+.button {opacity: 0.8;}    .button:hover {opacity: 1;}
+
+.menu .singleplayer {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.menu .multiplayer {
+    width: 100%;
+    margin-top: 5%;
+}
+
+
+.menu .local {
+    width: 100%;
+    margin-top: 5%; 
+    display: none;
+}
+
+.menu .remote {
+    width: 100%;
+    margin-top: 5%; 
+    display: none;
+}
+
+.menu .back {
+    width: 12%;
+    height: 10%;
+    margin-left: 80%;
+    display: none;
+}
+
+.credit {
+    margin: 1% 0 0 57%;
+    height: 5%;
+    width: 25%;
+    font-family: cursive;
+    font-size: 20px;
+    text-align: right;
+}
