@@ -106,6 +106,17 @@ body {
     display: none;   
 }
 
+.stat_multiplayer {
+    border: 5px darkgray solid;
+    border-radius: 20px;
+    margin: 1% 0 0 57%;
+    height: 70%;
+    width: 25%;
+    display: none;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
 .playername {
     font-family: cursive;
     font-size: 20px;
