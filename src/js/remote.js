@@ -204,6 +204,10 @@ $(function() {
       var cells = gameData.cell;
       $('#watch-index').val(cells.index);
       $('#watch-value').val(cells.value);
+        // draw the data using jQuery
+        if(cells.value === 'x') {
+      $('.cell'+(cells.index+1)).css('background-image', 'url(src/Image/tokens/default_X.png)');}
+        else {$('.cell'+(cells.index+1)).css('background-image', 'url(src/Image/tokens/default_O.png)');}
     });
     gameWatcher.on('error', function(e){
       console.error('an error has occured with the stream', e);
