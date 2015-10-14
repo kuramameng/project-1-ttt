@@ -14,6 +14,9 @@ $('.back').click(function(){
     $('.remote').css('display', 'none');
     $('.back').css('display', 'none');
     $('.stat_singleplayer').css('display', 'none');
+    // clear game area and turn it off
+    reset();
+    $('.gamearea').off();
     // show single player and multiplayer icons
     $('.menu').css('display', 'block');
     $('.multiplayer').css('display', 'block');
@@ -25,4 +28,6 @@ $('.local').click(function(){
     $('.menu').css('display', 'none');
     // show status of single player game
     $('.stat_singleplayer').css('display', 'block');
+    // turn on game area
+    $('.gamearea').on('click', '.cell', move);
 })

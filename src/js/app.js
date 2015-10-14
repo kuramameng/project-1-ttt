@@ -77,7 +77,7 @@ var reset = function reset() {
   }
 
 
-$('.gamearea').on('click', '.cell', move);
+//$('.gamearea').on('click', '.cell', move);
 $('.newgame').click(reset);
 
 
