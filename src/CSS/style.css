@@ -76,11 +76,39 @@ body {
     display: none;
 }
 
-.menu .back {
+.back {
     width: 12%;
     height: 10%;
     margin-left: 80%;
     display: none;
+}
+
+.newgame {
+    width: 20%;
+    height: 10%;
+    margin-left: 50%;
+    float: left;
+}
+
+.score {
+    margin-left: 10%;
+    font-family: cursive;
+    font-size: 30px;
+    color: green;
+}
+
+.stat_singleplayer{
+    border: 5px darkgray solid;
+    border-radius: 20px;
+    margin: 1% 0 0 57%;
+    height: 70%;
+    width: 25%;
+    display: none;   
+}
+
+.playername {
+    font-family: cursive;
+    font-size: 20px;
 }
 
 .credit {

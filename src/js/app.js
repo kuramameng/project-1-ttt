@@ -3,6 +3,13 @@
 var gameover = false;
 var cells = [];
 var turn = '1';
+var p1Win = 0;
+var p2Win = 0;
+var tie = 0;
+
+$('.p1win').html(p1Win);
+$('.p2win').html(p2Win);
+$('.tie').html(tie);
 
 for(var i=0; i<9; i++){
     cells[i] = $('.cell'+(i+1));
@@ -16,12 +23,21 @@ var winCombo = function winCombo(c1, c2, c3) {
       c3.css('background-color','limeGreen');
       if(c1.html() === '1'){
           console.log("Player X wins!");
+          $('.p1win').html(++p1Win);
       }
       else{
           console.log("Player O wins!");
+          $('.p2win').html(++p2Win);
       }
-    }
+    } 
   }
+
+var checkTie = function checkTie() {
+    for (var i = 0; i<cells.length; i++){
+        if(cells[i].html() === '') return false;
+    }
+    return true;
+}
 
 var checkWin = function checkWin() {
     winCombo(cells[0], cells[1], cells[2]);
@@ -38,7 +54,8 @@ var checkWin = function checkWin() {
     var $this = $(this);
     if(gameover === true || $this.html() !== '') {
         return;
-    } else {
+    }
+    else {
     $this.html(turn);
         if(turn === '1'){
             turn = '0';
@@ -48,6 +65,7 @@ var checkWin = function checkWin() {
             $this.css('background-image', 'url(src/Image/tokens/default_O.png)');
         }
     }
+    if(checkTie()) {$('.tie').html(++tie);}
     checkWin();
   }
   
@@ -60,4 +78,6 @@ var reset = function reset() {
 
 
 $('.gamearea').on('click', '.cell', move);
-$('.local').click(reset);
+$('.newgame').click(reset);
+
+

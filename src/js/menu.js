@@ -13,8 +13,16 @@ $('.back').click(function(){
     $('.local').css('display', 'none');
     $('.remote').css('display', 'none');
     $('.back').css('display', 'none');
+    $('.stat_singleplayer').css('display', 'none');
     // show single player and multiplayer icons
+    $('.menu').css('display', 'block');
     $('.multiplayer').css('display', 'block');
     $('.singleplayer').css('display', 'block');
 })
 
+$('.local').click(function(){
+    // remove regular menu and show game status
+    $('.menu').css('display', 'none');
+    // show status of single player game
+    $('.stat_singleplayer').css('display', 'block');
+})
