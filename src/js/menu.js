@@ -31,6 +31,24 @@ $('.local').click(function(){
     $('.stat_singleplayer').css('display', 'block');
     // turn on game area
     $('.gamearea').on('click', '.cell', move);
+    // login
+    tttapi.login(
+        {
+            "credentials": {
+                "email": "meng@js.com",
+                "password": "11111"
+            }
+        },
+        function(err, data){
+            if(err) {
+                return console.error(err);
+            }
+            tttapi.token = data.user.token;
+            console.log(tttapi.token);
+        }
+    );
+    // assign remote to false
+    remote = false;
 })
 
 $('.remote').click(function(){
@@ -38,4 +56,8 @@ $('.remote').click(function(){
     $('.menu').css('display', 'none');
     // some status of multi player game
     $('.stat_multiplayer').css('display', 'block');
+    // turn on game area
+    $('.gamearea').on('click', '.cell', move);
+
+
 })

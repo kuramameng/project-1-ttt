@@ -33,11 +33,11 @@ function best(){
                 {
                     weight = 1000;
                     cells[i].html() = '0';
-                    cells.[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
+                    cells[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
                 } else if(checkTie()){
                     weight = Math.round(Math.random() * 100 - 50);
                     cells[i].html() = '0';
-                    cells.[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
+                    cells[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
                 }else{
                     weight = Math.round(Math.random() * 800 - 400);} 
                     if(bestX == null || weight >= bestWeight){  

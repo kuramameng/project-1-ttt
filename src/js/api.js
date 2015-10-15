@@ -1,7 +1,10 @@
 'use strict';
+var board = {};
+
 var tttapi = {
   gameWatcher: null,
   ttt: 'http://ttt.wdibos.com',
+  token: '',
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -148,51 +151,65 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
+      tttapi.token = data.user.token;
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
   });
 
   $('#list-games').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+  //  var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.listGames(token, callback);
+    tttapi.listGames(tttapi.token, callback);
   });
 
   $('#create-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+  //  var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.createGame(token, callback);
+    tttapi.createGame(tttapi.token, callback);
   });
 
   $('#show-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+    // var token = $(this).children('[name="token"]').val();
     var id = $('#show-id').val();
     e.preventDefault();
-    tttapi.showGame(id, token, callback);
+
+    $('.cell').css('background-image', 'none');
+    $('.cell').html('');
+    $('.cell').css('background-color','white');
+    tttapi.showGame(id, tttapi.token, function(err,data){
+      if(err) {
+        return console.error(err);
+      }
+      for(var i = 0; i<cells.length; i++){
+        cells[i].html(data.game.cells[i]);
+        drawBoard();
+      }
+    checkWin();
+    });
   });
 
   $('#join-game').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+   // var token = $(this).children('[name="token"]').val();
     var id = $('#join-id').val();
     e.preventDefault();
-    tttapi.joinGame(id, token, callback);
+    tttapi.joinGame(id, tttapi.token, callback);
   });
 
   $('#mark-cell').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
+//    var token = $(this).children('[name="token"]').val();
     var id = $('#mark-id').val();
     var data = wrap('game', wrap('cell', form2object(this)));
     e.preventDefault();
-    tttapi.markCell(id, data, token, callback);
+    tttapi.markCell(id, data, tttapi.token, callback);
   });
 
   $('#watch-game').on('submit', function(e){
-    var token = $(this).children('[name="token"]').val();
+   // var token = $(this).children('[name="token"]').val();
     var id = $('#watch-id').val();
     e.preventDefault();
 
-    var gameWatcher = tttapi.watchGame(id, token);
+    var gameWatcher = tttapi.watchGame(id, tttapi.token);
 
     gameWatcher.on('change', function(data){
       var parsedData = JSON.parse(data);
@@ -204,10 +221,6 @@ $(function() {
       var cells = gameData.cell;
       $('#watch-index').val(cells.index);
       $('#watch-value').val(cells.value);
-        // draw the data using jQuery
-        if(cells.value === 'x') {
-      $('.cell'+(cells.index+1)).css('background-image', 'url(src/Image/tokens/default_X.png)');}
-        else {$('.cell'+(cells.index+1)).css('background-image', 'url(src/Image/tokens/default_O.png)');}
     });
     gameWatcher.on('error', function(e){
       console.error('an error has occured with the stream', e);
@@ -215,3 +228,4 @@ $(function() {
   });
 
 });
+
