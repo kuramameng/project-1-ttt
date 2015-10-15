@@ -166,9 +166,11 @@ $(function() {
         return console.error(err);
       }
       for(var i=0; i < data.games.length; i++){
-        gameList[i] = data.games[i].id;
+        if(data.games[i].player_o === null){
+          gameList.push(data.games[i].id);
+        }
       }
-      $('.list-result').text('Game ID: \n' + gameList);
+      $('.list-result').text('Local Game ID: \n' + gameList);
     });
   });
 
