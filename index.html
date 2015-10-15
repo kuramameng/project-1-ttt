@@ -20,11 +20,6 @@
         <div class="cell cell9"></div>
     </div>
 
-    <div class='settings'>
-        <input class='button avatar' type="image" src="src/Image/icons/settings.png">
-        <input class='button sound' type="image" src="src/Image/icons/speaker.png">
-    </div>
-
     <div class='menu'>
         <input class='button singleplayer' type="image" src="src/Image/icons/single_player.png">
         <input class='button multiplayer' type="image" src="src/Image/icons/multi_player.png">
@@ -49,20 +44,26 @@
             </span>
         </div>
         <div>
-            <img src="src/Image/avatar/girl_1.png" style="height: 25%; width: 25%; margin: 10% 0 0 10%; vertical-align:middle;">
+            <img src="src/Image/avatar/girl_1.png" style="height: 25%; width: 25%; margin: 10% 0 2% 10%; vertical-align:middle;">
             <span class='playername'>
                 PLAYER-2:
                 <span class='score p2win'></span>
             </span>
         </div>
-        <button class='button newgame'>New Game</button>
-        <form id="show-game">
-            <label for="show-id">Id:</label>
-            <input id="show-id" type="text" size="4">
-            <input name="show-game" type="submit" value="Show Game">
-            <input class="token" name="token" type="hidden">
-         </form>
-        <input class='button back' type='image' src="src/Image/icons/back.png">
+        <div class=apiButtons>
+            <button class='button newgame'>New Game</button>
+            <button class="list-games">List Games</button>
+
+            <form id="show-game">
+                <input id="show-id" type="text" size="4" placeholder="Game ID"><br>
+                <input name="show-game" type="submit" value="Load Game" style="width: 200%; height: 100%">
+                <input class="token" name="token" type="hidden">
+             </form>
+        </div>
+            <input class='button back' type='image' src="src/Image/icons/back.png">
+        <textarea class='list-result'>
+
+        </textarea>
     </div>
 
     <div class='stat_multiplayer'>

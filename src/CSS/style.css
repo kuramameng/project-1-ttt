@@ -23,31 +23,11 @@ body {
     background-color: white;
 }
 
-.settings {
-    border: 5px darkgray solid;
-    border-radius: 20px;
-    margin: 2% 0 0 57%;
-    height: 12%;
-    width: 25%;
-}
-
-.settings .avatar {
-    width: 80px; 
-    height: 80px; 
-    margin-left: 20%;   
-}
-
-.settings .sound {
-    width: 80px; 
-    height: 80px; 
-    margin-left: 20%;   
-}
-
 .menu {
     border: 5px darkgray solid;
     border-radius: 20px;
-    margin: 1% 0 0 57%;
-    height: 70%;
+    margin: 2% 0 0 57%;
+    height: 85%;
     width: 25%;
 }
 
@@ -55,39 +35,78 @@ body {
 
 .menu .singleplayer {
     width: 100%;
-    margin-top: 5%;
+    margin-top: 15%;
 }
 
 .menu .multiplayer {
     width: 100%;
-    margin-top: 5%;
+    margin-top: 15%;
 }
 
 
 .menu .local {
     width: 100%;
-    margin-top: 5%; 
+    margin-top: 15%;
     display: none;
 }
 
 .menu .remote {
     width: 100%;
-    margin-top: 5%; 
+    margin-top: 15%;
     display: none;
 }
 
 .back {
-    width: 12%;
+    width: 15%;
     height: 10%;
+    margin-top: 3%;
     margin-left: 80%;
     display: none;
 }
 
-.newgame {
-    width: 20%;
-    height: 10%;
-    margin-left: 50%;
+.apiButtons {
+    width: 80%;
+    height:10%;
     float: left;
+}
+
+
+.newgame {
+    width: 25%;
+    height: 100%;
+    margin: 3%;
+    float: left;
+}
+
+
+.list-games {
+    width: 25%;
+    height: 100%;
+    margin: 3%;
+    float: left;
+}
+
+#show-game {
+    width: 15%;
+    height: 55%;
+    margin-top: 3%;
+    margin-right: 20%;
+    float: right;
+}
+
+#show-id {
+    width: 190%;
+    height: 50%;
+    margin-bottom: 10%;
+}
+
+.list-result {
+    width: 90%;
+    height: 15%;
+    border: 1px lightblue solid;
+    margin-left: 3%;
+    margin-top: 3%;
+    border-radius: 10px;
 }
 
 .score {
@@ -100,17 +119,17 @@ body {
 .stat_singleplayer{
     border: 5px darkgray solid;
     border-radius: 20px;
-    margin: 1% 0 0 57%;
-    height: 70%;
+    margin: 2% 0 0 57%;
+    height: 85%;
     width: 25%;
-    display: none;   
+    display: none;
 }
 
 .stat_multiplayer {
     border: 5px darkgray solid;
     border-radius: 20px;
-    margin: 1% 0 0 57%;
-    height: 70%;
+    margin: 2% 0 0 57%;
+    height: 85%;
     width: 25%;
     display: none;
     padding-left: 10px;

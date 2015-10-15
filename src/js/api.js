@@ -157,10 +157,19 @@ $(function() {
     tttapi.login(credentials, cb);
   });
 
-  $('#list-games').on('submit', function(e) {
+  $('.list-games').on('click', function(e) {
   //  var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.listGames(tttapi.token, callback);
+    tttapi.listGames(tttapi.token,
+      function(err,data){
+      if(err) {
+        return console.error(err);
+      }
+      for(var i=0; i < data.games.length; i++){
+        gameList[i] = data.games[i].id;
+      }
+      $('.list-result').text('Game ID: \n' + gameList);
+    });
   });
 
   $('#create-game').on('submit', function(e) {

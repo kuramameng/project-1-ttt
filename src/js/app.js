@@ -7,6 +7,7 @@ var p1Win = 0;
 var p2Win = 0;
 var tie = 0;
 var gameId = 0;
+var gameList = [];
 
 $('.p1win').html(p1Win);
 $('.p2win').html(p2Win);
