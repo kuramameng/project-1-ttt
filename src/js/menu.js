@@ -30,24 +30,8 @@ $('.local').click(function(){
     $('.list-result').text('');
     // show status of single player game
     $('.stat_player').css('display', 'block');
-    // turn on game area
-    $('.gamearea').on('click', '.cell', move);
-    // login
-    tttapi.login(
-        {
-            "credentials": {
-                "email": "meng@js.com",
-                "password": "11111"
-            }
-        },
-        function(err, data){
-            if(err) {
-                return console.error(err);
-            }
-            tttapi.token = data.user.token;
-            console.log(tttapi.token);
-        }
-    );
+    // game message
+    $('.list-result').text('Please login to play');
     // assign remote to false
     remote = false;
 })

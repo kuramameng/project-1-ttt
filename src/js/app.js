@@ -8,6 +8,14 @@ var p2Win = 0;
 var tie = 0;
 var gameId = 0;
 var gameList = [];
+var credentials = {};
+var dataCell = {
+    game: {
+      cell:{}
+    }};
+var currentCellIndex = 0;
+var currentCellValue = '';
+
 
 $('.p1win').html(p1Win);
 $('.p2win').html(p2Win);
@@ -28,11 +36,11 @@ var winCombo = function winCombo(c1, c2, c3) {
       c2.css('background-color','limeGreen');
       c3.css('background-color','limeGreen');
       if(c1.html() === 'x'){
-          console.log("Player X wins!");
+          $('.list-result').text("Player X wins!");
           $('.p1win').html(++p1Win);
       }
       else{
-          console.log("Player O wins!");
+          $('.list-result').text("Player O wins!");
           $('.p2win').html(++p2Win);
       }
     }
@@ -57,6 +65,12 @@ var checkWin = function checkWin() {
   }
 
 var drawBoard = function drawBoard(){
+
+    $('.cell').click(function (event) {
+      currentCellValue = $(this).text();
+      currentCellIndex = $(this).index();
+    });
+
   // update game status on local board
     for(var i = 0; i<cells.length; i++){
         if(cells[i].html() === 'x' ) {
@@ -75,13 +89,30 @@ var drawBoard = function drawBoard(){
         $this.html(turn);
         if(turn === 'x'){
             turn = 'o';
+              dataCell.game.cell.index = currentCellIndex;
+              dataCell.game.cell.value = 'x';
         } else{
           turn ='x';
+              dataCell.game.cell.index = currentCellIndex;
+              dataCell.game.cell.value = 'o';
         }
     }
     drawBoard();
+
+    // console.log(dataCell);
+
+    tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
+                if(err) {
+                    return console.error(err);
+                }
+              }
+        );
+
+
+
     if(checkTie()) {$('.tie').html(++tie);}
     checkWin();
+
   }
 
 var reset = function reset() {
@@ -96,12 +127,14 @@ var reset = function reset() {
                 return console.error(err);
             }
             gameId = data.game.id;
+            $('.list-result').text('Game created. Game ID: ' + gameId);
         }
     );
 
   }
 
 $('.newgame').click(reset);
+
 
 
 

@@ -1,6 +1,4 @@
 'use strict';
-var board = {};
-
 var tttapi = {
   gameWatcher: null,
   ttt: 'http://ttt.wdibos.com',
@@ -95,7 +93,14 @@ var tttapi = {
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(data),
       dataType: 'json'
-    }, callback);
+    }, function(err,data) {
+                if(err) {
+                    return console.error(err);
+                }
+                 console.log(data.game.cells);
+                  $('.list-result').text(data.game.cells);
+              }
+              );
   },
 
   watchGame: function (id, token) {
@@ -138,7 +143,15 @@ $(function() {
 
   $('#register').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
-    tttapi.register(credentials, callback);
+    tttapi.register(credentials, function (error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    $('.list-result').text('User Registered');
+  });
     e.preventDefault();
   });
 
@@ -152,6 +165,10 @@ $(function() {
       callback(null, data);
       $('.token').val(data.user.token);
       tttapi.token = data.user.token;
+      console.log(tttapi.token);
+      // turn on game area
+      $('.list-result').text('Logged in, welcome! Time to play');
+      $('.gamearea').on('click', '.cell', move);
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
@@ -196,7 +213,10 @@ $(function() {
         cells[i].html(data.game.cells[i]);
         drawBoard();
       }
-    checkWin();
+      checkWin();
+      $('.list-result').text(data.game.cells);
+      console.log(data.game.cells);
+      gameId = data.game.id;
     });
   });
 
@@ -209,7 +229,7 @@ $(function() {
 
   $('#mark-cell').on('submit', function(e) {
 //    var token = $(this).children('[name="token"]').val();
-    var id = $('#mark-id').val();
+    gameId = data.game.id;
     var data = wrap('game', wrap('cell', form2object(this)));
     e.preventDefault();
     tttapi.markCell(id, data, tttapi.token, callback);
