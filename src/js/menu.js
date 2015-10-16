@@ -45,6 +45,6 @@ $('.remote').click(function(){
     $('.stat_player').css('display', 'block');
     // turn on game area
     $('.gamearea').on('click', '.cell', move);
-
-
+    // assign remote to false
+    remote = true;
 })
