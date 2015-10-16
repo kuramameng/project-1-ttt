@@ -94,13 +94,13 @@ var tttapi = {
       data: JSON.stringify(data),
       dataType: 'json'
     }, function(err,data) {
-                if(err) {
-                    return console.error(err);
-                }
-                 console.log(data.game.cells);
-                  $('.list-result').text(data.game.cells);
-              }
-              );
+        if(err) {
+          return console.error(err);
+        }
+        console.log(data.game.cells);
+        $('.list-result').text(data.game.cells);
+      }
+    );
   },
 
   watchGame: function (id, token) {
@@ -179,16 +179,17 @@ $(function() {
     e.preventDefault();
     tttapi.listGames(tttapi.token,
       function(err,data){
-      if(err) {
-        return console.error(err);
-      }
-      for(var i=0; i < data.games.length; i++){
-        if(data.games[i].player_o === null){
-          gameList.push(data.games[i].id);
+        if(err) {
+          return console.error(err);
         }
+        for(var i=0; i < data.games.length; i++){
+          if(data.games[i].player_o === null){
+            gameList.push(data.games[i].id);
+          }
+        }
+        $('.list-result').text('Local Game ID: \n' + gameList);
       }
-      $('.list-result').text('Local Game ID: \n' + gameList);
-    });
+    );
   });
 
   $('#create-game').on('submit', function(e) {
@@ -205,19 +206,20 @@ $(function() {
     $('.cell').css('background-image', 'none');
     $('.cell').html('');
     $('.cell').css('background-color','white');
-    tttapi.showGame(id, tttapi.token, function(err,data){
-      if(err) {
-        return console.error(err);
+    tttapi.showGame(id, tttapi.token,
+      function(err,data){
+        if(err) {
+          return console.error(err);
+        }
+        for(var i = 0; i<cells.length; i++){
+          cells[i].html(data.game.cells[i]);
+          drawBoard();
+        }
+        checkWin();
+        $('.list-result').text(data.game.cells);
+        gameId = data.game.id;
       }
-      for(var i = 0; i<cells.length; i++){
-        cells[i].html(data.game.cells[i]);
-        drawBoard();
-      }
-      checkWin();
-      $('.list-result').text(data.game.cells);
-      console.log(data.game.cells);
-      gameId = data.game.id;
-    });
+    );
   });
 
   $('#join-game').on('submit', function(e) {
@@ -229,7 +231,7 @@ $(function() {
         function(err, data){
           if(err){console.log(err)}
         }
-      );
+    );
   });
 
   $('#mark-cell').on('submit', function(e) {
