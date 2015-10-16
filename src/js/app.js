@@ -1,7 +1,11 @@
 'use restrict';
-
+// define global variables
 var gameover = false;
+// assign cell info using jQuery DOM
 var cells = [];
+for(var i=0; i<9; i++){
+    cells[i] = $('.cell'+(i+1));
+}
 var turn = 'x';
 var p1Win = 0;
 var p2Win = 0;
@@ -10,44 +14,30 @@ var gameId = 0;
 var gameList = [];
 var credentials = {};
 var dataCell = {
-                game: {
-                  cell:{
-
-                  }
-                }
-              };
+      game: {
+        cell:{}
+      }
+    };
 var currentCellIndex = 0;
 var currentCellValue = '';
-
-
-$('.p1win').html(p1Win);
-$('.p2win').html(p2Win);
-$('.tie').html(tie);
-
-// remote status
 var remote = false;
 
-
-for(var i=0; i<9; i++){
-    cells[i] = $('.cell'+(i+1));
-}
-
 var winCombo = function winCombo(c1, c2, c3) {
-    if(c1.html() !== '' && c1.html() === c2.html() && c1.html() === c3.html()) {
-      gameover = true;
-      c1.css('background-color','limeGreen');
-      c2.css('background-color','limeGreen');
-      c3.css('background-color','limeGreen');
-      if(c1.html() === 'x'){
-          $('.list-result').text("Player X wins!");
-          $('.p1win').html(++p1Win);
-      }
-      else{
-          $('.list-result').text("Player O wins!");
-          $('.p2win').html(++p2Win);
+      if(c1.html() !== '' && c1.html() === c2.html() && c1.html() === c3.html()) {
+        gameover = true;
+        c1.css('background-color','limeGreen');
+        c2.css('background-color','limeGreen');
+        c3.css('background-color','limeGreen');
+        if(c1.html() === 'x'){
+            $('.list-result').text("Player X wins!");
+            $('.p1win').html(++p1Win);
+        }
+        else{
+            $('.list-result').text("Player O wins!");
+            $('.p2win').html(++p2Win);
+        }
       }
     }
-  }
 
 var checkTie = function checkTie() {
     for (var i = 0; i<cells.length; i++){
@@ -68,12 +58,10 @@ var checkWin = function checkWin() {
   }
 
 var drawBoard = function drawBoard(){
-
     $('.cell').click(function (event) {
       currentCellValue = $(this).text();
       currentCellIndex = $(this).index();
     });
-
   // update game status on local board
     for(var i = 0; i<cells.length; i++){
         if(cells[i].html() === 'x' ) {
@@ -83,6 +71,11 @@ var drawBoard = function drawBoard(){
         }
     }
 }
+
+// display player status
+$('.p1win').html(p1Win);
+$('.p2win').html(p2Win);
+$('.tie').html(tie);
 
  var move = function move() {
     var $this = $(this);
@@ -101,21 +94,15 @@ var drawBoard = function drawBoard(){
         }
     }
     drawBoard();
-
-    // console.log(dataCell);
-
+    // pushing game info to the server
     tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
                 if(err) {
                     return console.error(err);
                 }
               }
         );
-
-
-
     if(checkTie()) {$('.tie').html(++tie);}
     checkWin();
-
   }
 
 var reset = function reset() {
