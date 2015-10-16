@@ -10,9 +10,12 @@ var gameId = 0;
 var gameList = [];
 var credentials = {};
 var dataCell = {
-    game: {
-      cell:{}
-    }};
+                game: {
+                  cell:{
+
+                  }
+                }
+              };
 var currentCellIndex = 0;
 var currentCellValue = '';
 

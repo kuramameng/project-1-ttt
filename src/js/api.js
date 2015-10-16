@@ -224,7 +224,12 @@ $(function() {
    // var token = $(this).children('[name="token"]').val();
     var id = $('#join-id').val();
     e.preventDefault();
-    tttapi.joinGame(id, tttapi.token, callback);
+    console.log(tttapi.token);
+    tttapi.joinGame(id, tttapi.token,
+        function(err, data){
+          if(err){console.log(err)}
+        }
+      );
   });
 
   $('#mark-cell').on('submit', function(e) {
