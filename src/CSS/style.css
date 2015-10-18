@@ -159,6 +159,15 @@ body {
     display: none;
 }
 
+.stat_singleplayer{
+    border: 5px darkgray solid;
+    border-radius: 20px;
+    margin: 2% 0 0 57%;
+    height: 85%;
+    width: 25%;
+    display: none;
+}
+
 .playername {
     font-family: cursive;
     font-size: 20px;

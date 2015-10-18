@@ -1,52 +1,55 @@
 var weight = 0;
-//function computerThink(){  
-//    var ai = best();
-//    var x = ai.x;  
-//    var y = ai.y;  
-//    board[x][y] = 1;  
-//    step++;  
-//    downChess(x, y);  
-//      
-//    if(isWin(x,y)){
-//        var str = '哈哈你输了!'; 
-//        setTimeout(function(){
-//            gameover(str);
-//        },300);
-//    }else if(isEnd()){  
-//        var str = '平局啦~~';  
-//        setTimeout(function(){
-//            gameover(str);
-//        },300);
-//    }
-//}  
+var bestIndex = null;
 
+var computerMove =  function computerMove(index){
+    cells[index].html('o');
+    console.log(weight);
+}
 // best position for computer
-function best(){
-    var bestMove = null;
-    var bestWeight = 0;
-
+var computerThink = function computerThink(){
     for(var i = 0; i < cells.length; i++){
+        // loop through empty cells and try to find winning moves
             if(cells[i].html() === ''){
-                cells[i].html() = '0';
+                cells[i].html('o');
                 checkWin();
-                if(gameover = true)
+                if(gameover)
                 {
+                    cells[i].html('');
+                    // winning move has weight of 1000
                     weight = 1000;
-                    cells[i].html() = '0';
-                    cells[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
-                } else if(checkTie()){
-                    weight = Math.round(Math.random() * 100 - 50);
-                    cells[i].html() = '0';
-                    cells[i].css('background-image', 'url(src/Image/tokens/default_O.png)');
-                }else{
-                    weight = Math.round(Math.random() * 800 - 400);} 
-                    if(bestX == null || weight >= bestWeight){  
-                        bestX = i;  
-                        bestY = j;  
-                        bestWeight = weight;  
-                    }  
-                
+                    return bestIndex = i;
+                }
+                else if(checkTie() && weight < 800){
+                    cells[i].html('');
+                    // tie move has weight of 100
+                    weight = 100;
+                    bestIndex = i;
+                }
+                else{
+                    botTest = true;
+                    cells[i].html('x');
+                    checkWin();
+                    if(gameover){
+                        cells[i].html('');
+                        weight = 800;
+                        gameover = false;
+                        botTest = false;
+                        return bestIndex = i;
+                    } else {
+                    // generate random move with weight between 100 and 800
+                    var emptyIndex = [];
+                    for(var j = 0; j < cells.length; j++){
+                        if(cells[j].html() === '') {
+                            emptyIndex.push(j);
+                        }
+                    }
+                    botTest = false;
+                    cells[i].html('');
+                    weight=Math.floor(Math.random()*700 ) + 100;
+                    bestIndex = emptyIndex[Math.floor(Math.random()*emptyIndex.length)];
+                    }
+                }
             }
     }
-    return {x : bestX, y : bestY, weight : bestWeight}; 
+    return bestIndex;
 }
