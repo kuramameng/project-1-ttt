@@ -23,7 +23,6 @@ var currentCellValue = '';
 var mutiplayer = false;
 var singleplayer = false;
 var remote = false;
-var playerStart = true;
 var botTest = false;
 
 var winCombo = function winCombo(c1, c2, c3) {
@@ -90,27 +89,55 @@ $('.tie').html(tie);
     var $this = $(this);
     // check multiplayer status
     if(multiplayer){
-      if(gameover === true || $this.html() !== '') {
-          return;
-      } else {
-          $this.html(turn);
-          if(turn === 'x'){
-              turn = 'o';
-                dataCell.game.cell.index = currentCellIndex;
-                dataCell.game.cell.value = 'x';
-          } else{
-            turn ='x';
-                dataCell.game.cell.index = currentCellIndex;
-                dataCell.game.cell.value = 'o';
-          }
-      }
-      // pushing game info to the server
-      tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
-          if(err) {
-            return console.error(err);
-          }
+      // local mode
+      if(!remote){
+        if(gameover|| $this.html() !== '') {
+            return;
+        } else {
+            $this.html(turn);
+            if(turn === 'x'){
+                turn = 'o';
+                  dataCell.game.cell.index = currentCellIndex;
+                  dataCell.game.cell.value = 'x';
+            } else{
+              turn ='x';
+                  dataCell.game.cell.index = currentCellIndex;
+                  dataCell.game.cell.value = 'o';
+            }
         }
-      );
+        // pushing game info to the server
+        tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
+            if(err) {
+              return console.error(err);
+            }
+          }
+        );
+      }
+      // remote mode
+      if(remote){
+        tttapi.watchGame(gameId,tttapi.token);
+        if(gameover|| $this.html() !== '') {
+            return;
+        } else {
+            $this.html(turn);
+            if(turn === 'x'){
+                turn = 'o';
+                  dataCell.game.cell.index = currentCellIndex;
+                  dataCell.game.cell.value = 'x';
+            } else{
+              turn ='x';
+                  dataCell.game.cell.index = currentCellIndex;
+                  dataCell.game.cell.value = 'o';
+            }
+        }
+        // pushing game info to the server
+        tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
+            if(err) {
+              return console.error(err);
+            }
+          }
+        );
+      }
     }
     // check single player status
     if(singleplayer){
