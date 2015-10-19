@@ -24,6 +24,7 @@ Wireframe design of the game is shown in the document <a href="https://github.co
 <p>
 According to the wireframe design, codes are separated into several sections to address functionalities individually. The code sections and their responsibilities are listed below:
 <ul>
+  <li><strong>style.css:</strong> style sheet for the game</li>
   <li><strong>app.js:</strong> main file, contains game logic and game display</li>
   <li><strong>api.js:</strong> AJAX file, provides methods for connecting to the game server</li>
   <li><strong>menu.js:</strong> event handler file, controls menu button activities</li>
@@ -62,7 +63,13 @@ It's pre-set conditions and their corresponding weight values are listed below:
   <li>Players can switch turns between X and O</li>
   <li>Score display (including wins, loses, and ties)</li>
   <li>Keep track of multiple game rounds with counter</li>
+  <li>Player can join other's game remotely and play togeter</li>
   <li>Playing histories in multiplayer mode are saved on server</li>
   <li>Unfinished games can be resumed by entering specific Game IDs and retrieving data from the server</li>
 </ul>
 
+<h2>Unsolved Problems</h2>
+<ul>
+  <li>Turn counter has issue when users play game remotely</li>
+  <li>tttapi.watchGame method has not been fully incorporated, therefore no live update of the game board in remote mode is currently available</li>
+</ul>
