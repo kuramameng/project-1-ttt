@@ -14,6 +14,7 @@ $('.back').click(function(){
     $('.remote').css('display', 'none');
     $('.back').css('display', 'none');
     $('.stat_player').css('display', 'none');
+    $('.stat_singleplayer').css('display', 'none');
     // clear game area and turn it off
     reset();
     $('.gamearea').off();
@@ -28,11 +29,13 @@ $('.local').click(function(){
     $('.menu').css('display', 'none');
     // clear game list text area
     $('.list-result').text('');
-    // show status of single player game
+    // show status of local game
     $('.stat_player').css('display', 'block');
     // game message
     $('.list-result').text('Please login to play');
-    // assign remote to false
+    // mutiplayer mode, assign remote to false
+    multiplayer = true;
+    singleplayer = false;
     remote = false;
 })
 
@@ -41,10 +44,28 @@ $('.remote').click(function(){
     $('.menu').css('display', 'none');
     // clear game list text area
     $('.list-result').text('');
-    // some status of multi player game
+    // show status of multi player game
     $('.stat_player').css('display', 'block');
     // turn on game area
     $('.gamearea').on('click', '.cell', move);
-    // assign remote to false
+    // multiplayer mode, assign remote to true
+    multiplayer = true;
+    singleplayer = false;
     remote = true;
+})
+
+$('.singleplayer').click(function(){
+    // remove regular menu and show game status
+    $('.menu').css('display', 'none');
+    // clear game list text area
+    $('.list-result').text('');
+    // show status of single player game
+    $('.stat_singleplayer').css('display', 'block');
+    $('.back').css('display', 'block');
+     // turn on game area
+    $('.gamearea').on('click', '.cell', move);
+    // assign bot to true
+    singleplayer = true;
+    multiplayer = false;
+    remote = false;
 })

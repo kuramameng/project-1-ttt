@@ -20,21 +20,30 @@ var dataCell = {
     };
 var currentCellIndex = 0;
 var currentCellValue = '';
+var mutiplayer = false;
+var singleplayer = false;
 var remote = false;
+var playerStart = true;
+var botTest = false;
 
 var winCombo = function winCombo(c1, c2, c3) {
       if(c1.html() !== '' && c1.html() === c2.html() && c1.html() === c3.html()) {
-        gameover = true;
-        c1.css('background-color','limeGreen');
-        c2.css('background-color','limeGreen');
-        c3.css('background-color','limeGreen');
-        if(c1.html() === 'x'){
-            $('.list-result').text("Player X wins!");
-            $('.p1win').html(++p1Win);
+        if(botTest){
+          gameover = true;
         }
-        else{
-            $('.list-result').text("Player O wins!");
-            $('.p2win').html(++p2Win);
+        else {
+          gameover = true;
+          c1.css('background-color','limeGreen');
+          c2.css('background-color','limeGreen');
+          c3.css('background-color','limeGreen');
+          if(c1.html() === 'x'){
+              $('.list-result').text("Player X wins!");
+              $('.p1win').html(++p1Win);
+          }
+          else{
+              $('.list-result').text("Player O wins!");
+              $('.p2win').html(++p2Win);
+          }
         }
       }
     }
@@ -79,28 +88,51 @@ $('.tie').html(tie);
 
  var move = function move() {
     var $this = $(this);
-    if(gameover === true || $this.html() !== '') {
-        return;
-    } else {
-        $this.html(turn);
-        if(turn === 'x'){
-            turn = 'o';
-              dataCell.game.cell.index = currentCellIndex;
-              dataCell.game.cell.value = 'x';
-        } else{
-          turn ='x';
-              dataCell.game.cell.index = currentCellIndex;
-              dataCell.game.cell.value = 'o';
+    // check multiplayer status
+    if(multiplayer){
+      if(gameover === true || $this.html() !== '') {
+          return;
+      } else {
+          $this.html(turn);
+          if(turn === 'x'){
+              turn = 'o';
+                dataCell.game.cell.index = currentCellIndex;
+                dataCell.game.cell.value = 'x';
+          } else{
+            turn ='x';
+                dataCell.game.cell.index = currentCellIndex;
+                dataCell.game.cell.value = 'o';
+          }
+      }
+      // pushing game info to the server
+      tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
+          if(err) {
+            return console.error(err);
+          }
         }
+      );
     }
+    // check single player status
+    if(singleplayer){
+      if(gameover === true || $this.html() !== '') {
+          return;
+      } else {
+          $this.html(turn);
+          if(turn === 'x'){
+              turn = 'o';
+              $('.gamearea').off();
+          }
+          if(turn === 'o'){
+            turn ='x';
+            computerMove(computerThink());
+            $('.gamearea').on('click', '.cell', move);
+          }
+      }
+    }
+
+    // update board representation
     drawBoard();
-    // pushing game info to the server
-    tttapi.markCell(gameId,dataCell, tttapi.token, function(err,data) {
-                if(err) {
-                    return console.error(err);
-                }
-              }
-        );
+    // check winning conditions
     if(checkTie()) {$('.tie').html(++tie);}
     checkWin();
   }
