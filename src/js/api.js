@@ -97,8 +97,6 @@ var tttapi = {
         if(err) {
           return console.error(err);
         }
-        console.log(data.game.cells);
-        $('.list-result').text(data.game.cells);
       }
     );
   },
@@ -216,7 +214,7 @@ $(function() {
           drawBoard();
         }
         checkWin();
-        $('.list-result').text(data.game.cells);
+        $('.list-result').text('Game loaded, time to play!');
         gameId = data.game.id;
       }
     );
