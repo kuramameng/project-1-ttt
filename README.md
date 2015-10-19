@@ -10,6 +10,7 @@ As a player:
   <li>I want to play with a strong computer</li>
   <li>I want to be able to save my unfinished game remotely, and come back to it at later time</li>
   <li>I want to play the game with others</li>
+  <li>I want to be able to switch truns between X and O</li>
   <li>I want to save play record (i.e., wins, loses, ties) locally</li>
 </ul>
 </p>
