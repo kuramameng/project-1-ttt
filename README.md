@@ -56,11 +56,13 @@ It's pre-set conditions and their corresponding weight values are listed below:
 
 <h2>Current Game Features</h2>
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul
+  <li>Game is published on github pages and can be accessed by multiple devices and locations</li>
+  <li>Game board is rendered using HTML and CSS</li>
+  <li>Inventive styling with effects like mouse hover</li>
+  <li>Players can switch turns between X and O</li>
+  <li>Score display (including wins, loses, and ties)</li>
+  <li>Keep track of multiple game rounds with counter</li>
+  <li>Playing histories in multiplayer mode are saved on server</li>
+  <li>Unfinished games can be resumed by entering specific Game IDs and retrieving data from the server</li>
+</ul>
 
