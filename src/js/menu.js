@@ -71,3 +71,5 @@ $('.singleplayer').click(function(){
     multiplayer = false;
     remote = false;
 })
+
+$('.newgame').click(reset);
