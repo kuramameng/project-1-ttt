@@ -34,6 +34,8 @@ According to the wireframe design, codes are separated into several sections to 
 <h2>Basic Game Logic</h2>
 <p>
 The object of Tic Tac Toe is to get three in a row. You play on a three by three game board. The first player is known as X and the second is O. Players alternate placing Xs and Os on the game board until either oppent has three in a row or all nine squares are filled.
+</p>
+<p>
 For the game logic, a 1-D array with 9 elements is first created to represent the nine squares. The letter "x" or "o" is then assigned to each element once it is clicked from the game board. All winning conditions are saved before hand to check if one of the players wins. If no winning conditions were met, then the game will return "tie". 
 </p>
 
