@@ -17,7 +17,7 @@ var computerThink = function computerThink(){
                     cells[i].html('');
                     // winning move has weight of 1000
                     weight = 1000;
-                    --p2Win;
+                    p2Win--;
                     return bestIndex = i;
                 }
                 else if(checkTie() && weight < 800){
@@ -37,17 +37,17 @@ var computerThink = function computerThink(){
                         botTest = false;
                         return bestIndex = i;
                     } else {
-                    // generate random move with weight between 100 and 800
-                    var emptyIndex = [];
-                    for(var j = 0; j < cells.length; j++){
-                        if(cells[j].html() === '') {
-                            emptyIndex.push(j);
+                        // generate random move with weight between 100 and 800
+                        var emptyIndex = [];
+                        for(var j = 0; j < cells.length; j++){
+                            if(cells[j].html() === '') {
+                                emptyIndex.push(j);
+                            }
                         }
-                    }
-                    botTest = false;
-                    cells[i].html('');
-                    weight=Math.floor(Math.random()*700 ) + 100;
-                    bestIndex = emptyIndex[Math.floor(Math.random()*emptyIndex.length)];
+                        botTest = false;
+                        cells[i].html('');
+                        weight=Math.floor(Math.random()*700 ) + 100;
+                        bestIndex = emptyIndex[Math.floor(Math.random()*emptyIndex.length)];
                     }
                 }
             }
