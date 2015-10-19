@@ -142,17 +142,18 @@ var reset = function reset() {
     $('.cell').html('');
     $('.cell').css('background-color','white');
     gameover = false;
-    // create game to server
-    tttapi.createGame(tttapi.token,
-        function(err,data) {
-            if(err) {
-                return console.error(err);
-            }
-            gameId = data.game.id;
-            $('.list-result').text('Game created. Game ID: ' + gameId);
-        }
-    );
-
+    if(multiplayer){
+      // create game to server
+      tttapi.createGame(tttapi.token,
+          function(err,data) {
+              if(err) {
+                  return console.error(err);
+              }
+              gameId = data.game.id;
+              $('.list-result').text('Game created. Game ID: ' + gameId);
+          }
+      );
+    }
   }
 
 $('.newgame').click(reset);
