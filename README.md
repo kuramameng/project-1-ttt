@@ -14,3 +14,9 @@ As a player:
 </ul>
 </p>
 
+<h2>Game Wireframe</h2>
+The initial wireframe design of the game is shown in the document here:
+<link src="https://github.com/kuramameng/project-1-ttt/blob/master/documents/ttt-wireframe.pdf"></link>
+
+<h2>Separation of Concerns</h2>
+
