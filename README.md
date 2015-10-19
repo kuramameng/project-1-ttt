@@ -43,5 +43,13 @@ For the game logic, a 1-D array with 9 elements is first created to represent th
 <p>
 The bot you are playing against is called "Deep Orange". It's thinking pattern is like this: 
 It goes through all the empty blocks on the game board, and tries to assign its token to each cell to see if any pre-set conditions are met. If one of the conditions was satisfied, it will return certain weight value (i.e., higher the weight, better the move) to be associated with that block. After looping through the whole board, it will look back and make a move on the block with the highest weight.
-
+</p>
+<p>
+It's pre-set conditions and their corresponding weight values are listed below:
+<ul>
+  <li><strong>Winning Move:</strong> Deep Orange wins by making a move here. weight = 1000.</li>
+  <li><strong>Intercept Move:</strong> Deep Orange stops player from winning by moving there. Weight = 800.</li>
+  <li><strong>Freestyle Move:</strong> Deep Orange makes move to a random block if no winning or intercept moves exist. Weight = 100 - 800</li>
+  <li><strong>Handshake Move</strong> Deep Orange makes the move and the game is a tie. Weight = 199.</li>
+</ul>
 </p>
