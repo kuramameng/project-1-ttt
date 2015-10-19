@@ -16,7 +16,9 @@ $('.back').click(function(){
     $('.stat_player').css('display', 'none');
     $('.stat_singleplayer').css('display', 'none');
     // clear game area and turn it off
-    reset();
+    $('.cell').css('background-image', 'none');
+    $('.cell').html('');
+    $('.cell').css('background-color','white');
     $('.gamearea').off();
     // show single player and multiplayer icons
     $('.menu').css('display', 'block');
@@ -46,8 +48,8 @@ $('.remote').click(function(){
     $('.list-result').text('');
     // show status of multi player game
     $('.stat_player').css('display', 'block');
-    // turn on game area
-    $('.gamearea').on('click', '.cell', move);
+    // game message
+    $('.list-result').text('Please login to play');
     // multiplayer mode, assign remote to true
     multiplayer = true;
     singleplayer = false;

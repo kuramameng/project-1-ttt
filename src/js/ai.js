@@ -17,7 +17,7 @@ var computerThink = function computerThink(){
                     cells[i].html('');
                     // winning move has weight of 1000
                     weight = 1000;
-                    p2Win--;
+                    --p2win;
                     return bestIndex = i;
                 }
                 else if(checkTie() && weight < 800){
