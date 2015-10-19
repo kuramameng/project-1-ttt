@@ -4,8 +4,9 @@
 
 <h2>User Stories</h2>
 <p>
+As a player:
 <ul>
-  <li>As a player, I want the game UI to be simple and clean</li>
+  <li>I want the game UI to be simple and clean</li>
   <li>I want to play with a strong computer</li>
   <li>I want to be able to save my unfinished game remotely, and come back to it at later time</li>
   <li>I want to play the game with others</li>
