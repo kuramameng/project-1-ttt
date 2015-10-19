@@ -38,11 +38,11 @@ var winCombo = function winCombo(c1, c2, c3) {
           c3.css('background-color','limeGreen');
           if(c1.html() === 'x'){
               $('.list-result').text("Player X wins!");
-              $('.p1win').html(++p1Win);
+              $('.p1win').html(p1Win++);
           }
           else{
               $('.list-result').text("Player O wins!");
-              $('.p2win').html(++p2Win);
+              $('.p2win').html(p2Win++);
           }
         }
       }
@@ -114,7 +114,7 @@ $('.tie').html(tie);
     }
     // check single player status
     if(singleplayer){
-      if(gameover === true || $this.html() !== '') {
+      if(gameover || $this.html() !== '') {
           return;
       } else {
           $this.html(turn);
