@@ -50,6 +50,17 @@ It's pre-set conditions and their corresponding weight values are listed below:
   <li><strong>Winning Move:</strong> Deep Orange wins by making a move here. weight = 1000.</li>
   <li><strong>Intercept Move:</strong> Deep Orange stops player from winning by moving there. Weight = 800.</li>
   <li><strong>Freestyle Move:</strong> Deep Orange makes move to a random block if no winning or intercept moves exist. Weight = 100 - 800</li>
-  <li><strong>Handshake Move</strong> Deep Orange makes the move and the game is a tie. Weight = 199.</li>
+  <li><strong>Handshake Move</strong> Deep Orange makes the move and the game is a tie. Weight = 100.</li>
 </ul>
 </p>
+
+<h2>Current Game Features</h2>
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul
+
