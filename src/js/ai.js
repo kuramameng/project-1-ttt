@@ -27,6 +27,7 @@ var computerThink = function computerThink(){
                     bestIndex = i;
                 }
                 else{
+                    // 'x' does not wins if botTest equals true
                     botTest = true;
                     cells[i].html('x');
                     checkWin();
