@@ -15,7 +15,13 @@ As a player:
 </p>
 
 <h2>Game Wireframe</h2>
-The initial wireframe design of the game is shown in the document <a href="https://github.com/kuramameng/project-1-ttt/blob/master/documents/ttt-wireframe.pdf">HERE</a>.
+Wireframe design of the game is shown in the document <a href="https://github.com/kuramameng/project-1-ttt/blob/master/documents/ttt-wireframe.pdf">HERE</a>.
 
 <h2>Separation of Concerns</h2>
-
+According to the wireframe design, codes are separated into several sections to address functionalities individually. The code sections and their responsibilities are listed below:
+<ul>
+  <li><strong>app.js:</strong> main file, contains game logic and game display</li>
+  <li><strong>api.js:</strong> AJAX file, provides methods for connecting to the game server</li>
+  <li><strong>menu.js:</strong> event handler file, controls menu button activities</li>
+  <li><strong>ai.js:</strong> AI file, holds computer algorithm for player vs. PC mode</li>
+</ul>
